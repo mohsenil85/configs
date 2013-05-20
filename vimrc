@@ -1,0 +1,63 @@
+execute pathogen#infect()
+
+set backspace=2         " backspace in insert mode works like normal editor
+syntax on               " syntax highlighting
+filetype indent on      " activates indenting for files
+set autoindent          " auto indenting
+"set number              " line numbers
+colorscheme desert      " colorscheme desert
+set nobackup            " get rid of anoying ~file
+
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+
+set mouse=a
+
+
+
+if !has("gui_running")
+  :source $VIMRUNTIME/menu.vim 
+  :set wildmenu                        
+  :set cpoptions-=<
+  :set wildcharm=<C-Z>
+  :map <F4> :emenu <C-Z>
+endif
+
+" 'quote' a word
+nnoremap qw :silent! normal mpea'<Esc>bi'<Esc>`pl
+" " double "quote" a word
+nnoremap qd :silent! normal mpea"<Esc>bi"<Esc>`pl
+" " remove quotes from a word
+nnoremap wq :silent! normal mpeld bhd `ph<CR>
+
+let g:lisp_rainbow=1
+"
+"clearly fucking indispensible
+:set relativenumber
+
+"fix delay after esc O
+set timeout timeoutlen=1000 ttimeoutlen=100
+
+set cursorline
+"
+set history=10000
+set expandtab
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set expandtab
+set autoindent
+
+:command W w
+:command WQ wq
+:command Q q
+
+"no adding comment lines when i o or O on a comment
+set formatoptions-=or
+
+
+let g:slimv_swank_clojure = '! xterm -e lein swank &'
+
+
