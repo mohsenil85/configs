@@ -32,12 +32,12 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git brew coffee github gnu-utils history-substring-search node npm osx urltools vi-mode lein)
+plugins=(git brew coffee github gnu-utils history-substring-search node npm  urltools vi-mode lein rails rails3 gem rake rvm ruby colorize)
 
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export PATH=~/.cabal/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/sbin:~/bin:/usr/local/share/python3
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/sbin:~/bin:/usr/local/share/python3
 
 man() {
 	env \
@@ -51,8 +51,21 @@ man() {
 			man "$@"
 }
 
-alias firefox=open\ /Applications/Firefox.app 
 
 export PATH=$PATH:/usr/local/share/npm/bin
 
-export PATH=/Applications/Postgres.app/Contents/MacOS/bin:$PATH
+export PATH=~/bin:$PATH
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
+
+
+[[ -s /home/logan/.nvm/nvm.sh ]] && . /home/logan/.nvm/nvm.sh # This loads NVM
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+alias note=/home/logan/bin/note-thing/note
+alias noteread=/home/logan/bin/note-thing/noteread
+alias noteclean=/home/logan/bin/note-thing/noteclean
+
+source ~/.profile
