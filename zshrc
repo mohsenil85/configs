@@ -69,3 +69,4 @@ alias noteread=/home/logan/bin/note-thing/noteread
 alias noteclean=/home/logan/bin/note-thing/noteclean
 
 source ~/.profile
+xmodmap /home/lmohseni/.keyswap
