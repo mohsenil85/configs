@@ -32,7 +32,7 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git brew coffee github gnu-utils history-substring-search node npm  urltools vi-mode lein rails rails3 gem rake rvm ruby colorize)
+plugins=(tmux git brew coffee github gnu-utils history-substring-search node npm  urltools vi-mode lein rails rails3 gem rake rvm ruby colorize)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -70,3 +70,8 @@ alias noteclean=/home/logan/bin/note-thing/noteclean
 
 source ~/.profile
 xmodmap /home/lmohseni/.keyswap
+[[ -s /home/lmohseni/.nvm/nvm.sh ]] && . /home/lmohseni/.nvm/nvm.sh # This loads NVM
+
+function encode() { echo -n $@ | perl -pe's/([^-_.~A-Za-z0-9])/sprintf("%%%02X", ord($1))/seg'; }
+function google() { firefox http://www.google.com/search?hl=en#q="`encode $@`" ;}
+function wiki() { firefox http://en.wikipedia.org/w/index.php?search="`encode $@`" ;}
