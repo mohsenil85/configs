@@ -75,3 +75,4 @@ xmodmap /home/lmohseni/.keyswap
 function encode() { echo -n $@ | perl -pe's/([^-_.~A-Za-z0-9])/sprintf("%%%02X", ord($1))/seg'; }
 function google() { firefox http://www.google.com/search?hl=en#q="`encode $@`" ;}
 function wiki() { firefox http://en.wikipedia.org/w/index.php?search="`encode $@`" ;}
+
