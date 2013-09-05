@@ -61,13 +61,15 @@ set formatoptions-=or
 let g:slimv_swank_clojure = '! xterm -e lein swank &'
 
 
- set statusline=\ "
- set statusline+=%1*%-25.80f%*\ " file name minimum 25, maxiumum 80 (right justified)
- set statusline+=%2*
- set statusline+=%h "help file flag
- set statusline+=%r "read only flag
- set statusline+=%m "modified flag
- set statusline+=%w "preview flag
- set statusline+=%*\ "
+set statusline=     "
+set statusline+=%1*%-25.80f%*\ " file name minimum 25, maxiumum 80 (right justified)
+set statusline+=%2*
+set statusline+=%h "help file flag
+set statusline+=%r "read only flag
+set statusline+=%m "modified flag
+set statusline+=%w "preview flag
+set statusline+=%*\ "
 set statusline+=%4*%{fugitive#statusline()}%*\
 
+"remap increment so that it doesnt fuck with tmux
+:nnoremap <C-c> <C-a>
