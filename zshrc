@@ -1,6 +1,5 @@
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
-
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -32,7 +31,7 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(tmux git brew coffee github gnu-utils history-substring-search node npm  urltools vi-mode lein rails rails3 gem rake rvm ruby colorize)
+plugins=(git brew coffee github gnu-utils history-substring-search node npm  urltools vi-mode lein rails rails3 gem rake rvm ruby colorize)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -74,5 +73,39 @@ xmodmap /home/lmohseni/.keyswap
 
 function encode() { echo -n $@ | perl -pe's/([^-_.~A-Za-z0-9])/sprintf("%%%02X", ord($1))/seg'; }
 function google() { firefox "http://www.google.com/search?hl=en#q="`encode $@`"";}
-function wiki() { firefox "http://en.wikipedia.org/w/index.php?search="`encode $@`"" ;}
+function wiki() { firefox "http://en.wikipedia.org/w/index.php?search="`encode $@`"";}
 
+
+alias pbcopy='xsel --clipboard --input'
+alias pbpaste='xsel --clipboard --output'
+
+
+function explain { # base url with first command already injected
+# $ explain tar
+#   => http://explainshel.com/explain/tar?args=
+  url="http://explainshell.com/explain/$1?args="
+#
+#         # removes $1 (tar) from arguments ($@)
+  shift;
+
+#             # iterates over remaining args and adds builds the rest of the url
+  for i in "$@"; do
+    url=$url"$i""+"
+  done
+
+# opens url in browser
+firefox "$url"
+}
+#if [ $DISPLAY ]
+#then
+#  # Add the 3 lines below to Convert caps-lock into Control
+#  xmodmap -e 'remove Lock = Caps_Lock' > /dev/null 2>&1
+#  xmodmap -e 'keysym Caps_Lock = Control_L' > /dev/null 2>&1
+#  xmodmap -e 'add Control = Control_L' > /dev/null 2>&1
+#
+#  # and xcape is in Startup Applications
+#fi
+#xcape
+
+
+alias daystamp='date +%Y%m%d'

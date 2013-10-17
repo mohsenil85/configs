@@ -73,3 +73,15 @@ set statusline+=%4*%{fugitive#statusline()}%*\
 
 "remap increment so that it doesnt fuck with tmux
 :nnoremap <C-c> <C-a>
+
+:set hlsearch
+
+let g:slimv_swank_cmd = '! xterm -e sbcl --load /usr/share/common-lisp/source/slime/start-swank.lisp &'
+
+if !has("gui_running")
+  :source $VIMRUNTIME/menu.vim 
+  :set wildmenu                        
+  :set cpoptions-=<
+  :set wildcharm=<C-Z>
+  :map <F4> :emenu <C-Z>
+endif
