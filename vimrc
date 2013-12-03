@@ -58,7 +58,7 @@ set autoindent
 set formatoptions-=or
 
 
-let g:slimv_swank_clojure = '! xterm -e lein swank &'
+"let g:slimv_swank_clojure = '! xterm -e lein swank &'
 
 
 set statusline=     "
