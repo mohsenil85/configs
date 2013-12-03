@@ -85,3 +85,7 @@ if !has("gui_running")
   :set wildcharm=<C-Z>
   :map <F4> :emenu <C-Z>
 endif
+
+"repam Q to last macro"
+nnoremap Q @@
+xnoremap Q @@

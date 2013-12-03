@@ -31,7 +31,7 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git brew coffee github gnu-utils history-substring-search node npm  urltools vi-mode lein rails rails3 gem rake rvm ruby colorize)
+plugins=(git github gnu-utils history-substring-search debian urltools vi-mode lein colorize)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -109,3 +109,5 @@ firefox "$url"
 
 
 alias daystamp='date +%Y%m%d'
+
+xsetroot -name "$(hostname -I)"
