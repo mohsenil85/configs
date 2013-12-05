@@ -110,4 +110,3 @@ firefox "$url"
 
 alias daystamp='date +%Y%m%d'
 
-xsetroot -name "$(hostname -I)"
