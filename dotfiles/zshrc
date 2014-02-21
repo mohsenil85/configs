@@ -126,3 +126,5 @@ zstyle ':completion:*' group-name ''
 fpath=(~/configs/completions $fpath)
 
 autoload -U ~/configs/completions/*(:t)
+
+alias hr='print ${(l:COLUMNS::=:)}'
