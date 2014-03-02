@@ -110,5 +110,26 @@ firefox "$url"
 
 alias daystamp='date +%Y%m%d'
 
+<<<<<<< HEAD
 export GOPATH=$HOME/projects/go
 export PATH=$PATH:$GOPATH/bin
+=======
+xsetroot -name "$(hostname -I)"
+
+
+zstyle ':completion:*' verbose yes
+
+zstyle ':completion:*:descriptions' format '%B%d%b'
+
+zstyle ':completion:*:messages' format '%d'
+
+zstyle ':completion:*:warnings' format 'No matches for: %d'
+
+zstyle ':completion:*' group-name ''
+
+fpath=(~/configs/completions $fpath)
+
+autoload -U ~/configs/completions/*(:t)
+
+alias hr='print ${(l:COLUMNS::=:)}'
+>>>>>>> 0bc8eaa1a300f9c91a094ebc39d440d36aeb4e8d

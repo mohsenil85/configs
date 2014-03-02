@@ -75,7 +75,7 @@ set statusline+=%4*%{fugitive#statusline()}%*\
 "remap increment so that it doesnt fuck with tmux
 :nnoremap <C-c> <C-a>
 
-:set hlsearch
+":set hlsearch
 
 let g:slimv_swank_cmd = '! xterm -e sbcl --load /usr/share/common-lisp/source/slime/start-swank.lisp &'
 
@@ -90,3 +90,5 @@ endif
 "repam Q to last macro"
 nnoremap Q @@
 xnoremap Q @@
+
+set incsearch 
