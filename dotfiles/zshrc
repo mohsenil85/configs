@@ -31,7 +31,7 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git github gnu-utils history-substring-search debian urltools vi-mode lein colorize)
+plugins=(git archlinux systemd pip python github gnu-utils history-substring-search debian urltools vi-mode lein colorize)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -110,3 +110,5 @@ firefox "$url"
 
 alias daystamp='date +%Y%m%d'
 
+export GOPATH=$HOME/projects/go
+export PATH=$PATH:$GOPATH/bin

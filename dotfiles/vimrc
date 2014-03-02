@@ -35,7 +35,8 @@ nnoremap wq :silent! normal mpeld bhd `ph<CR>
 let g:lisp_rainbow=1
 "
 "clearly fucking indispensible
-:set relativenumber
+set relativenumber
+set number
 
 "fix delay after esc O
 set timeout timeoutlen=1000 ttimeoutlen=100
