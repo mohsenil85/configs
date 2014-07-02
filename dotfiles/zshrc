@@ -31,7 +31,7 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git pip python systemd archlinux github gnu-utils brew history-substring-search debian urltools vi-mode lein colorize)
+plugins=(git pip python github brew history-substring-search urltools lein colorize)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -68,16 +68,12 @@ alias noteread=/home/logan/bin/note-thing/noteread
 alias noteclean=/home/logan/bin/note-thing/noteclean
 
 source ~/.profile
-xmodmap /home/lmohseni/.keyswap
 [[ -s /home/lmohseni/.nvm/nvm.sh ]] && . /home/lmohseni/.nvm/nvm.sh # This loads NVM
 
 function encode() { echo -n $@ | perl -pe's/([^-_.~A-Za-z0-9])/sprintf("%%%02X", ord($1))/seg'; }
 function google() { firefox "http://www.google.com/search?hl=en#q="`encode $@`"";}
 function wiki() { firefox "http://en.wikipedia.org/w/index.php?search="`encode $@`"";}
 
-
-alias pbcopy='xsel --clipboard --input'
-alias pbpaste='xsel --clipboard --output'
 
 
 function explain { # base url with first command already injected
@@ -112,7 +108,6 @@ alias daystamp='date +%Y%m%d'
 
 export GOPATH=$HOME/projects/go
 export PATH=$PATH:$GOPATH/bin
-xsetroot -name "$(hostname -I)"
 
 
 zstyle ':completion:*' verbose yes
@@ -132,3 +127,10 @@ autoload -U ~/configs/completions/*(:t)
 alias hr='print ${(l:COLUMNS::=:)}'
 
 alias info='info --vi-keys'
+
+set -o vi
+
+
+export PATH=/usr/local/bin:$PATH
+
+unalias ag
