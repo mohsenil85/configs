@@ -59,7 +59,7 @@ set autoindent
 set formatoptions-=or
 
 
-"let g:slimv_swank_clojure = '! xterm -e lein swank &'
+let g:slimv_swank_clojure = '! xterm -e lein swank &'
 
 
 set statusline=     "
@@ -77,7 +77,7 @@ set statusline+=%4*%{fugitive#statusline()}%*\
 
 ":set hlsearch
 
-let g:slimv_swank_cmd = '! xterm -e sbcl --load /usr/share/common-lisp/source/slime/start-swank.lisp &'
+""let g:slimv_swank_cmd = '! xterm -e sbcl --load /usr/share/common-lisp/source/slime/start-swank.lisp &'
 
 if !has("gui_running")
   :source $VIMRUNTIME/menu.vim 
@@ -92,3 +92,5 @@ nnoremap Q @@
 xnoremap Q @@
 
 set incsearch 
+
+autocmd FileType javascript setlocal shiftwidth=4 tabstop=4

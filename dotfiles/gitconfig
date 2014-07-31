@@ -1,5 +1,5 @@
 [user]
-	email = mohsenil85@gmail.com
+	email = logan.mohseni@singlemindconsulting.com
 	name = Logan Mohseni
 [color]
 	ui = true
@@ -17,3 +17,6 @@
   ci = commit
   st = status
   br = branch
+[core]
+	editor = vim
+	autocrlf = input
