@@ -31,7 +31,7 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(maven git pip python systemd archlinux github gnu-utils brew history-substring-search debian urltools vi-mode lein colorize)
+plugins=(maven git pip python systemd github git-extras tmux vim-integration  history-substring-search urltools vi-mode lein colorize, mix ubuntu httpie )
 
 source $ZSH/oh-my-zsh.sh
 
@@ -137,3 +137,27 @@ export PATH=~/bin:$PATH
 
 
 bindkey ' ' magic-space
+
+alias got='git'
+alias vpnup="sudo openconnect https://contractor.cengage.net"
+source /home/lmohseni/.rvm/scripts/rvm
+alias mvnlaunch="mvn -Plocal,local-deploy clean deploy -Dmaven.test.skip=true"
+
+setopt NO_NOMATCH
+
+export TOMCAT_HOME=~/builds/tomcat
+
+alias slash=/usr/games/slashem
+
+alias mvndefault="mvn -Plocal,liquibase-update,local-deploy clean deploy"
+alias mvnall="git stash; git fetch; git rebase origin/maven-trunk; git stash apply; mvndefault"
+
+alias factor="~/builds/factor/factor -run=listener"
+
+export PATH=/home/lmohseni/builds/erl/bin:$PATH
+
+export PATH=/usr/share/chicken/bin:$PATH
+
+export CHICKEN_DOC_PAGER=less
+export CHICKEN_DOC_COLORS=auto
+
