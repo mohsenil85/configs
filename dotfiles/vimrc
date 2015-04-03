@@ -3,15 +3,11 @@ execute pathogen#infect()
 set backspace=2         " backspace in insert mode works like normal editor
 syntax on               " syntax highlighting
 filetype indent on      " activates indenting for files
+filetype plugin on      " activates indenting for files
 set autoindent          " auto indenting
 "set number              " line numbers
 colorscheme desert      " colorscheme desert
 set nobackup            " get rid of anoying ~file
-
-"au VimEnter * RainbowParenthesesToggle
-"au Syntax * RainbowParenthesesLoadRound
-"au Syntax * RainbowParenthesesLoadSquare
-"au Syntax * RainbowParenthesesLoadBraces
 
 set mouse=a
 
@@ -32,7 +28,7 @@ nnoremap qd :silent! normal mpea"<Esc>bi"<Esc>`pl
 " " remove quotes from a word
 nnoremap wq :silent! normal mpeld bhd `ph<CR>
 
-let g:lisp_rainbow=1
+"let g:lisp_rainbow=1
 "
 "clearly fucking indispensible
 set relativenumber
@@ -70,14 +66,19 @@ set statusline+=%r "read only flag
 set statusline+=%m "modified flag
 set statusline+=%w "preview flag
 set statusline+=%*\ "
-set statusline+=%4*%{fugitive#statusline()}%*\
+"set statusline+=%4*%{fugitive#statusline()}%*\
 
 "remap increment so that it doesnt fuck with tmux
 :nnoremap <C-c> <C-a>
 
 ":set hlsearch
 
-let g:slimv_swank_cmd = '! xterm -e sbcl --load /usr/share/common-lisp/source/slime/start-swank.lisp &'
+"let g:slimv_swank_cmd = '! xterm -e sbcl --load /usr/share/common-lisp/source/slime/start-swank.lisp &'
+"let g:slimv_swank_cmd = '!osascript -e "tell application \"Terminal\" to do script \"racket /Users/lmohseni/.vim/bundle/swank-racket/server.rkt\""'
+"let g:slimv_swank_cmd = '!racket /Users/lmohseni/.vim/bundle/swank-racket/server.rkt &'
+
+"origi  
+let g:slimv_swank_cmd = '!osascript -e "tell application \"Terminal\" to do script \"sbcl --load ~/.vim/bundle/slimv/slime/start-swank.lisp\""'
 
 if !has("gui_running")
   :source $VIMRUNTIME/menu.vim 
@@ -92,7 +93,49 @@ nnoremap Q @@
 xnoremap Q @@
 
 set incsearch 
-let g:ycm_add_preview_to_completeopt=0
-let g:ycm_confirm_extra_conf=0
 set completeopt-=preview
 
+let g:slimv_repl_split=3
+
+au FileType lisp let b:delimitMate_quotes="* + \" "
+
+"set ruler
+"
+"set noerrorbells 
+"set novisualbell
+"set visualbell t_vb
+"
+"
+"let localleader=" "
+"let g:tslime_ensure_trailing_newlines = 1
+"let g:tslime_normal_mapping = '<localleader>t'
+"let g:tslime_visual_mapping = '<localleader>t'
+"let g:tslime_vars_mapping = '<localleader>T'
+
+let mapleader = ","
+let maplocalleader = ","
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+let g:slimux_scheme_keybindings=1
+let g:slimux_racket_keybindings=1
+let g:slimux_racket_xrepl = 1
+
+"map <Leader>c :SlimuxREPLConfigure<CR>
+
+"set omnifunc=syntaxcomplete#Complete
+"map <tab><tab> <c-x><c-o>
+
+map <c-s> :runtime bundle/racket-auto-syntax.vim 
+
+let g:syntastic_mode_map = {
+        \ "mode": "active",
+        \ "active_filetypes": [],
+        \ "passive_filetypes": ["racket"] }

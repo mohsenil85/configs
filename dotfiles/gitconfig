@@ -1,6 +1,6 @@
 [user]
 	email = mohsenil85@gmail.com
-	name = Logan Mohseni
+	name = mohsenil85
 [color]
 	ui = true
 [credential]
@@ -17,3 +17,5 @@
   ci = commit
   st = status
   br = branch
+[user "github"]
+	user = mohsenil85
