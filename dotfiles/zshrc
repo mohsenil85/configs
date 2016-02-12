@@ -1,71 +1,56 @@
-# Path to your oh-my-zsh configuration.
-ZSH=$HOME/.oh-my-zsh
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-ZSH_THEME="bira"
+# Aliases
+alias ll='ls -l'
+alias la='ls -la'
+alias path="echo $PATH | sed 's/:/\n/g'"
+alias v='vim'
 
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+autoload -U zutil
+autoload -U compinit
+autoload -U complist
+autoload -U promptinit
+promptinit
+prompt adam1
+compinit -i
 
-# Set to this to use case-sensitive completion
-# CASE_SENSITIVE="true"
+# Uncomment this line if you want jobs in background to contiue processing when exiting shell. One can also run the command 'disown' on the job to let the shell forget about the job (or start it with &| or &! at the end of the line) 
+#setopt NO_HUP
 
-# Comment this out to disable bi-weekly auto-update checks
-# DISABLE_AUTO_UPDATE="true"
+# Uncomment following line to AUTO_CD if command is a directory
+setopt AUTO_CD
+setopt NO_BEEP
+setopt EXTENDED_GLOB
 
-# Uncomment to change how many often would you like to wait before auto-updates occur? (in days)
-# export UPDATE_ZSH_DAYS=13
+# Allows commands like 'echo foo > file1 > file2'
+setopt MULTIOS
+setopt CORRECT
 
-# Uncomment following line if you want to disable colors in ls
-# DISABLE_LS_COLORS="true"
+# Set colors
+autoload colors; colors;
+export LSCOLORS="Gxfxcxdxbxegedabagacad"
+if [ "$DISABLE_LS_COLORS" != "true" ]
+then
+  # Find the option for using colors in ls, depending on the version: Linux or BSD
+  ls --color -d . &>/dev/null 2>&1 && alias ls='ls --color=tty' || alias ls='ls -G'
+fi
 
-# Uncomment following line if you want to disable autosetting terminal title.
-# DISABLE_AUTO_TITLE="true"
+# One history for all open shells; store 10 000 entries. Use ^R and Alt-P
+HISTFILE=~/.zhistory
+HISTSIZE=SAVEHIST=10000
+setopt incappendhistory
+setopt sharehistory
+setopt extendedhistory
 
-# Uncomment following line if you want red dots to be displayed while waiting for completion
-COMPLETION_WAITING_DOTS="true"
+# Useful to remember command in history without executing them
+setopt interactivecomments
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(maven git pip python systemd github git-extras tmux vim-integration  history-substring-search urltools vi-mode lein colorize, mix ubuntu httpie )
-
-source $ZSH/oh-my-zsh.sh
-
-# Customize to your needs...
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/sbin:~/bin:/usr/local/share/python3
-
-man() {
-	env \
-		LESS_TERMCAP_mb=$(printf "\e[1;31m") \
-		LESS_TERMCAP_md=$(printf "\e[1;31m") \
-		LESS_TERMCAP_me=$(printf "\e[0m") \
-		LESS_TERMCAP_se=$(printf "\e[0m") \
-		LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
-		LESS_TERMCAP_ue=$(printf "\e[0m") \
-		LESS_TERMCAP_us=$(printf "\e[1;32m") \
-			man "$@"
-}
-
+# Add tab completion to "cd.."
+zstyle ':completion:*' special-dirs true
 
 export PATH=$PATH:/usr/local/share/npm/bin
 
 export PATH=~/bin:$PATH
 
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
 
-
-[[ -s /home/logan/.nvm/nvm.sh ]] && . /home/logan/.nvm/nvm.sh # This loads NVM
-
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-
-alias note=/home/logan/bin/note-thing/note
-alias noteread=/home/logan/bin/note-thing/noteread
-alias noteclean=/home/logan/bin/note-thing/noteclean
 
 source ~/.profile
 [[ -s /home/lmohseni/.nvm/nvm.sh ]] && . /home/lmohseni/.nvm/nvm.sh # This loads NVM
@@ -76,32 +61,9 @@ function wiki() { firefox "http://en.wikipedia.org/w/index.php?search="`encode $
 
 
 
-function explain { # base url with first command already injected
-# $ explain tar
-#   => http://explainshel.com/explain/tar?args=
-  url="http://explainshell.com/explain/$1?args="
-#
-#         # removes $1 (tar) from arguments ($@)
-  shift;
-
-#             # iterates over remaining args and adds builds the rest of the url
-  for i in "$@"; do
-    url=$url"$i""+"
-  done
-
 # opens url in browser
 firefox "$url"
 }
-#if [ $DISPLAY ]
-#then
-#  # Add the 3 lines below to Convert caps-lock into Control
-#  xmodmap -e 'remove Lock = Caps_Lock' > /dev/null 2>&1
-#  xmodmap -e 'keysym Caps_Lock = Control_L' > /dev/null 2>&1
-#  xmodmap -e 'add Control = Control_L' > /dev/null 2>&1
-#
-#  # and xcape is in Startup Applications
-#fi
-#xcape
 
 /home/lmohseni/builds/xcape/xcape -e 'Control_L=Escape'
 
@@ -123,27 +85,20 @@ zstyle ':completion:*' group-name ''
 
 fpath=(~/configs/completions $fpath)
 
-autoload -U ~/configs/completions/*(:t)
-
 alias hr='print ${(l:COLUMNS::=:)}'
 
 alias info='info --vi-keys'
-
-export PATH=~/bin:$PATH
 
 
 bindkey ' ' magic-space
 
 alias got='git'
-alias vpnup="sudo openconnect https://contractor.cengage.net"
-source /home/lmohseni/.rvm/scripts/rvm
+
 alias mvnlaunch="mvn -Plocal,local-deploy clean deploy -Dmaven.test.skip=true"
 
 setopt NO_NOMATCH
 
 export TOMCAT_HOME=~/builds/tomcat
-
-alias slash=/usr/games/slashem
 
 alias mvndefault="mvn -Plocal,liquibase-update,local-deploy clean deploy"
 alias mvnall="git stash; git fetch; git rebase origin/maven-trunk; git stash apply; mvndefault"
