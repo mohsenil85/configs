@@ -1,97 +1,109 @@
-execute pathogen#infect()
+" Sets how many lines of history VIM has to remember
+set history=700
 
-set backspace=2         " backspace in insert mode works like normal editor
-syntax on               " syntax highlighting
-filetype indent on      " activates indenting for files
-set autoindent          " auto indenting
-"set number              " line numbers
-colorscheme desert      " colorscheme desert
-set nobackup            " get rid of anoying ~file
-"au VimEnter * RainbowParenthesesToggle
-"au Syntax * RainbowParenthesesLoadRound
-"au Syntax * RainbowParenthesesLoadSquare
-"au Syntax * RainbowParenthesesLoadBraces
+" Enable filetype plugins
+filetype plugin on
+filetype indent on
 
-set mouse=a
+" Set to auto read when a file is changed from the outside
+set autoread
 
 
+"Always show current position
+set ruler
 
-if !has("gui_running")
-  :source $VIMRUNTIME/menu.vim 
-  :set wildmenu                        
-  :set cpoptions-=<
-  :set wildcharm=<C-Z>
-  :map <F4> :emenu <C-Z>
-endif
+" Ignore case when searching
+set ignorecase
 
-" 'quote' a word
-nnoremap qw :silent! normal mpea'<Esc>bi'<Esc>`pl
-" " double "quote" a word
-nnoremap qd :silent! normal mpea"<Esc>bi"<Esc>`pl
-" " remove quotes from a word
-nnoremap wq :silent! normal mpeld bhd `ph<CR>
+" When searching try to be smart about cases 
+set smartcase
 
-let g:lisp_rainbow=1
-"
-"clearly fucking indispensible
-set relativenumber
+" Highlight search results
+set hlsearch
+
+" Jump to matches
+set incsearch
+
+" Show matching brackets when text indicator is over them
+set showmatch
+
+" do not make vim compatible with vi.
+set nocompatible
+
+" number the lines.
 set number
 
-"fix delay after esc O
-set timeout timeoutlen=1000 ttimeoutlen=100
-
+" show location of cursor using a horizontal line.
 set cursorline
-"
-set history=10000
+
+" keep cursor in the middle of the screen while scrolling up and down.
+set scrolloff=999
+
+" show auto complete menus.
+set wildmenu
+
+" Make wildmenu behave like bash completion.
+set wildmode=list:longest
+
+
+syntax enable
+
+
+colorscheme desert
+set background=dark
+
+
+" Set utf8 as standard encoding and en_US as the standard language
+set encoding=utf8
+
+" Use Unix as the standard file type
+set ffs=unix,dos,mac
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Files, backups and undo
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Turn backup off, since most stuff is in SVN, git et.c anyway...
+set nobackup
+set nowb
+set noswapfile
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Text, tab and indent related
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Use spaces instead of tabs
 set expandtab
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
-set expandtab
-set autoindent
 
-:command W w
-:command WQ wq
-:command Q q
+" Be smart when using tabs ;)
+set smarttab
 
-"no adding comment lines when i o or O on a comment
-set formatoptions-=or
+" 1 tab == 4 spaces
+set shiftwidth=4
+set tabstop=4
+
+" Linebreak on 500 characters
+set lbr
+set tw=500
+
+set ai "Auto indent
+set si "Smart indent
+set wrap "Wrap lines
 
 
-"let g:slimv_swank_clojure = '! xterm -e lein swank &'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Moving around, tabs, windows and buffers
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Treat long lines as break lines (useful when moving around in them)
+map j gj
+map k gk
 
 
-set statusline=     "
-set statusline+=%1*%-25.80f%*\ " file name minimum 25, maxiumum 80 (right justified)
-set statusline+=%2*
-set statusline+=%h "help file flag
-set statusline+=%r "read only flag
-set statusline+=%m "modified flag
-set statusline+=%w "preview flag
-set statusline+=%*\ "
-set statusline+=%4*%{fugitive#statusline()}%*\
 
-"remap increment so that it doesnt fuck with tmux
-:nnoremap <C-c> <C-a>
+""""""""""""""""""""""""""""""
+" => Status line
+""""""""""""""""""""""""""""""
+" Always show the status line
+set laststatus=2
 
-":set hlsearch
-
-let g:slimv_swank_cmd = '! xterm -e sbcl --load /usr/share/common-lisp/source/slime/start-swank.lisp &'
-
-if !has("gui_running")
-  :source $VIMRUNTIME/menu.vim 
-  :set wildmenu                        
-  :set cpoptions-=<
-  :set wildcharm=<C-Z>
-  :map <F4> :emenu <C-Z>
-endif
-
-"repam Q to last macro"
-nnoremap Q @@
-xnoremap Q @@
-
-set incsearch 
-let g:ycm_add_preview_to_completeopt=0
-let g:ycm_confirm_extra_conf=0
-set completeopt-=preview
-
+" The wish that grants more wishes (edit vimrc with \ev)
+nnoremap <Leader>ev :tabnew<CR>:e ~/.vimrc<CR>
