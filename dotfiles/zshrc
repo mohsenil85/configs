@@ -1,3 +1,26 @@
+ZSH_THEME_GIT_PROMPT_DIRTY="*"
+ZSH_THEME_GIT_PROMPT_CLEAN=""
+
+# show git branch/tag, or name-rev if on detached head
+parse_git_branch() {
+  (command git symbolic-ref -q HEAD || command git name-rev --name-only --no-undefined --always HEAD) 2>/dev/null
+}
+
+# show red star if there are uncommitted changes
+parse_git_dirty() {
+  if command git diff-index --quiet HEAD 2> /dev/null; then
+    echo "$ZSH_THEME_GIT_PROMPT_CLEAN"
+  else
+    echo "$ZSH_THEME_GIT_PROMPT_DIRTY"
+  fi
+}
+
+# if in a git repo, show dirty indicator + git branch
+git_custom_status() {
+  local git_where="$(parse_git_branch)"
+  [ -n "$git_where" ] && echo "$(parse_git_dirty)"
+}
+
 # Aliases
 alias ll='ls -l'
 alias la='ls -la'
@@ -9,8 +32,13 @@ autoload -U compinit
 autoload -U complist
 autoload -U promptinit
 promptinit
-prompt adam1
+prompt walters
 compinit -i
+
+prompt_orig=$PS1
+prompt_git=$(git_custom_status)
+
+export PS1="$prompt_orig$prompt_git "
 
 # Uncomment this line if you want jobs in background to contiue processing when exiting shell. One can also run the command 'disown' on the job to let the shell forget about the job (or start it with &| or &! at the end of the line) 
 #setopt NO_HUP
@@ -53,19 +81,8 @@ export PATH=~/bin:$PATH
 
 
 source ~/.profile
-[[ -s /home/lmohseni/.nvm/nvm.sh ]] && . /home/lmohseni/.nvm/nvm.sh # This loads NVM
 
-function encode() { echo -n $@ | perl -pe's/([^-_.~A-Za-z0-9])/sprintf("%%%02X", ord($1))/seg'; }
-function google() { firefox "http://www.google.com/search?hl=en#q="`encode $@`"";}
-function wiki() { firefox "http://en.wikipedia.org/w/index.php?search="`encode $@`"";}
-
-
-
-# opens url in browser
-firefox "$url"
-}
-
-/home/lmohseni/builds/xcape/xcape -e 'Control_L=Escape'
+#/home/lmohseni/builds/xcape/xcape -e 'Control_L=Escape'
 
 alias daystamp='date +%Y%m%d'
 
@@ -114,7 +131,5 @@ export CHICKEN_DOC_COLORS=auto
 
 set -o vi
 
-
 export PATH=/usr/local/bin:$PATH
 
-unalias ag
