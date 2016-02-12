@@ -35,10 +35,7 @@ promptinit
 prompt walters
 compinit -i
 
-prompt_orig=$PS1
-prompt_git=$(git_custom_status)
-
-export PS1="$prompt_orig$prompt_git "
+export PS1="$PS1$(git_custom_status) "
 
 # Uncomment this line if you want jobs in background to contiue processing when exiting shell. One can also run the command 'disown' on the job to let the shell forget about the job (or start it with &| or &! at the end of the line) 
 #setopt NO_HUP
