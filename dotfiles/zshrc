@@ -1,24 +1,24 @@
-ZSH_THEME_GIT_PROMPT_DIRTY="*"
-ZSH_THEME_GIT_PROMPT_CLEAN=""
 
-# show git branch/tag, or name-rev if on detached head
-parse_git_branch() {
-  (command git symbolic-ref -q HEAD || command git name-rev --name-only --no-undefined --always HEAD) 2>/dev/null
+#taken from omz lib/git.zsh
+function git_prompt_info() {
+  local ref
+    ref=$(command git symbolic-ref HEAD 2> /dev/null) || \
+    ref=$(command git rev-parse --short HEAD 2> /dev/null) || return 0
+    echo "${ref#refs/heads/}$(parse_git_dirty)"
 }
 
-# show red star if there are uncommitted changes
-parse_git_dirty() {
-  if command git diff-index --quiet HEAD 2> /dev/null; then
-    echo "$ZSH_THEME_GIT_PROMPT_CLEAN"
+# Checks if working tree is dirty
+function parse_git_dirty() {
+  local STATUS=''
+  local FLAGS
+  FLAGS=('--porcelain')
+  FLAGS+='--ignore-submodules=dirty'
+  STATUS=$(command git status ${FLAGS} 2> /dev/null | tail -n1)
+  if [[ -n $STATUS ]]; then
+    echo " *"
   else
-    echo "$ZSH_THEME_GIT_PROMPT_DIRTY"
+    echo ""
   fi
-}
-
-# if in a git repo, show dirty indicator + git branch
-git_custom_status() {
-  local git_where="$(parse_git_branch)"
-  [ -n "$git_where" ] && echo "$(parse_git_dirty)"
 }
 
 # Aliases
@@ -35,7 +35,7 @@ promptinit
 prompt walters
 compinit -i
 
-export PS1="$PS1$(git_custom_status) "
+export PS1="$PS1$(git_prompt_info) "
 
 # Uncomment this line if you want jobs in background to contiue processing when exiting shell. One can also run the command 'disown' on the job to let the shell forget about the job (or start it with &| or &! at the end of the line) 
 #setopt NO_HUP

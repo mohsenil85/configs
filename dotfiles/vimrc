@@ -142,3 +142,4 @@ set formatoptions-=or
 
 set completeopt-=preview
 
+set paste
