@@ -98,6 +98,14 @@ map j gj
 map k gk
 
 
+"use mouse
+set mouse=a
+
+
+set autoindent          " auto indenting
+
+" backspace in insert mode works like normal editor
+set backspace=2         
 
 """"""""""""""""""""""""""""""
 " => Status line
@@ -107,3 +115,30 @@ set laststatus=2
 
 " The wish that grants more wishes (edit vimrc with \ev)
 nnoremap <Leader>ev :tabnew<CR>:e ~/.vimrc<CR>
+
+
+" 'quote' a word
+nnoremap qw :silent! normal mpea'<Esc>bi'<Esc>`pl
+" " double "quote" a word
+nnoremap qd :silent! normal mpea"<Esc>bi"<Esc>`pl
+" " remove quotes from a word
+nnoremap wq :silent! normal mpeld bhd `ph<CR>
+
+"clearly fucking indispensible
+set relativenumber
+set number
+
+"fix delay after esc O
+set timeout timeoutlen=1000 ttimeoutlen=100
+
+set cursorline
+
+:command W w
+:command WQ wq
+:command Q q
+
+"no adding comment lines when i o or O on a comment
+set formatoptions-=or
+
+set completeopt-=preview
+
