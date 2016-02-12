@@ -1,10 +1,8 @@
-
-#taken from omz lib/git.zsh
 function git_prompt_info() {
   local ref
     ref=$(command git symbolic-ref HEAD 2> /dev/null) || \
     ref=$(command git rev-parse --short HEAD 2> /dev/null) || return 0
-    echo "${ref#refs/heads/}$(parse_git_dirty)"
+    echo " ${ref#refs/heads/}$(parse_git_dirty)"
 }
 
 # Checks if working tree is dirty
@@ -12,10 +10,11 @@ function parse_git_dirty() {
   local STATUS=''
   local FLAGS
   FLAGS=('--porcelain')
-  FLAGS+='--ignore-submodules=dirty'
-  STATUS=$(command git status ${FLAGS} 2> /dev/null | tail -n1)
+      FLAGS+='--ignore-submodules=dirty'
+      FLAGS+='--untracked-files=no'
+    STATUS=$(command git status ${FLAGS} 2> /dev/null | tail -n1)
   if [[ -n $STATUS ]]; then
-    echo " *"
+    echo " * "
   else
     echo ""
   fi
@@ -32,10 +31,10 @@ autoload -U compinit
 autoload -U complist
 autoload -U promptinit
 promptinit
-prompt walters
+setopt prompt_subst
 compinit -i
 
-export PS1="$PS1$(git_prompt_info) "
+PROMPT='%B%(?..[%?] )%b%n@%U%m%u$(git_prompt_info)%# '
 
 # Uncomment this line if you want jobs in background to contiue processing when exiting shell. One can also run the command 'disown' on the job to let the shell forget about the job (or start it with &| or &! at the end of the line) 
 #setopt NO_HUP
@@ -54,8 +53,8 @@ autoload colors; colors;
 export LSCOLORS="Gxfxcxdxbxegedabagacad"
 if [ "$DISABLE_LS_COLORS" != "true" ]
 then
-  # Find the option for using colors in ls, depending on the version: Linux or BSD
-  ls --color -d . &>/dev/null 2>&1 && alias ls='ls --color=tty' || alias ls='ls -G'
+    # Find the option for using colors in ls, depending on the version: Linux or BSD
+    ls --color -d . &>/dev/null 2>&1 && alias ls='ls --color=tty' || alias ls='ls -G'
 fi
 
 # One history for all open shells; store 10 000 entries. Use ^R and Alt-P
