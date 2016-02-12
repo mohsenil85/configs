@@ -2,7 +2,7 @@ function git_prompt_info() {
   local ref
     ref=$(command git symbolic-ref HEAD 2> /dev/null) || \
     ref=$(command git rev-parse --short HEAD 2> /dev/null) || return 0
-    echo " ${ref#refs/heads/}$(parse_git_dirty)"
+    echo "${ref#refs/heads/}$(parse_git_dirty)"
 }
 
 # Checks if working tree is dirty
@@ -14,7 +14,7 @@ function parse_git_dirty() {
       FLAGS+='--untracked-files=no'
     STATUS=$(command git status ${FLAGS} 2> /dev/null | tail -n1)
   if [[ -n $STATUS ]]; then
-    echo " * "
+    echo " *"
   else
     echo ""
   fi
@@ -30,11 +30,14 @@ autoload -U zutil
 autoload -U compinit
 autoload -U complist
 autoload -U promptinit
+autoload -U colors && colors
 promptinit
 setopt prompt_subst
 compinit -i
 
-PROMPT='%B%(?..[%?] )%b%n@%U%m%u$(git_prompt_info)%# '
+PROMPT='%F{green}%U%m%u%f %F{red}%~%f %F{yellow}$(git_prompt_info)%f %# '
+RPROMPT='%_%F{red}%t%f %B%(?..[%?] )%b'
+
 
 # Uncomment this line if you want jobs in background to contiue processing when exiting shell. One can also run the command 'disown' on the job to let the shell forget about the job (or start it with &| or &! at the end of the line) 
 #setopt NO_HUP
@@ -69,6 +72,12 @@ setopt interactivecomments
 
 # Add tab completion to "cd.."
 zstyle ':completion:*' special-dirs true
+
+# find new bins
+zstyle ':completion:*' rehash true
+
+# color menu opt
+zstyle ':completion:*' menu select
 
 export PATH=$PATH:/usr/local/share/npm/bin
 
