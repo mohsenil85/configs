@@ -14,11 +14,13 @@ function parse_git_dirty() {
       FLAGS+='--untracked-files=no'
     STATUS=$(command git status ${FLAGS} 2> /dev/null | tail -n1)
   if [[ -n $STATUS ]]; then
-    echo " *"
+    echo "%F{yellow} *%f"
   else
     echo ""
   fi
 }
+
+set -o vi
 
 # Aliases
 alias ll='ls -l'
@@ -35,12 +37,12 @@ promptinit
 setopt prompt_subst
 compinit -i
 
-PROMPT='%F{green}%U%m%u%f %F{red}%~%f %F{yellow}$(git_prompt_info)%f %# '
-RPROMPT='%_%F{red}%t%f %B%(?..[%?] )%b'
+PROMPT='%F{green}%~%f %F{green}$(git_prompt_info)%f '
+RPROMPT='%_%F{green}%t%f %B%(?..[%?] )%b'
 
 
 # Uncomment this line if you want jobs in background to contiue processing when exiting shell. One can also run the command 'disown' on the job to let the shell forget about the job (or start it with &| or &! at the end of the line) 
-#setopt NO_HUP
+setopt NO_HUP
 
 # Uncomment following line to AUTO_CD if command is a directory
 setopt AUTO_CD
@@ -73,73 +75,32 @@ setopt interactivecomments
 # Add tab completion to "cd.."
 zstyle ':completion:*' special-dirs true
 
+# Approximate commands?
+zstyle ':completion:*' completer _expand _complete _approximate
+
 # find new bins
 zstyle ':completion:*' rehash true
 
-# color menu opt
-zstyle ':completion:*' menu select
-
-export PATH=$PATH:/usr/local/share/npm/bin
-
-export PATH=~/bin:$PATH
-
-
+# Group matches and describe.
+zstyle ':completion:*:*:*:*:*' menu select
+zstyle ':completion:*:matches' group 'yes'
+zstyle ':completion:*:options' description 'yes'
+zstyle ':completion:*:options' auto-description '%d'
+zstyle ':completion:*:corrections' format ' %F{green}-- %d (errors: %e) --%f'
+zstyle ':completion:*:descriptions' format ' %F{yellow}-- %d --%f'
+zstyle ':completion:*:messages' format ' %F{purple} -- %d --%f'
+zstyle ':completion:*:warnings' format ' %F{red}-- no matches found --%f'
+zstyle ':completion:*:default' list-prompt '%S%M matches%s'
+zstyle ':completion:*' format ' %F{yellow}-- %d --%f'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' verbose yes
 
 source ~/.profile
 
-#/home/lmohseni/builds/xcape/xcape -e 'Control_L=Escape'
+export CONFIG_HOME="/home/lmohseni/configs/"
 
-alias daystamp='date +%Y%m%d'
-
-export GOPATH=$HOME/projects/go
-export PATH=$PATH:$GOPATH/bin
-
-
-zstyle ':completion:*' verbose yes
-
-zstyle ':completion:*:descriptions' format '%B%d%b'
-
-zstyle ':completion:*:messages' format '%d'
-
-zstyle ':completion:*:warnings' format 'No matches for: %d'
-
-zstyle ':completion:*' group-name ''
-
-fpath=(~/configs/completions $fpath)
-
-alias hr='print ${(l:COLUMNS::=:)}'
-
-alias info='info --vi-keys'
-
-
-bindkey ' ' magic-space
-
-alias got='git'
-
-alias mvnlaunch="mvn -Plocal,local-deploy clean deploy -Dmaven.test.skip=true"
-
-setopt NO_NOMATCH
-
-export TOMCAT_HOME=~/builds/tomcat
-
-alias mvndefault="mvn -Plocal,liquibase-update,local-deploy clean deploy"
-alias mvnall="git stash; git fetch; git rebase origin/maven-trunk; git stash apply; mvndefault"
-
-alias factor="~/builds/factor/factor -run=listener"
-
-export PATH=/home/lmohseni/builds/erl/bin:$PATH
-
-export PATH=/usr/share/chicken/bin:$PATH
-
-export CHICKEN_DOC_PAGER=less
-export CHICKEN_DOC_COLORS=auto
-
-set -o vi
-
-export PATH=/usr/local/bin:$PATH
-
-source /home/lmohseni/configs/zsh-history-substring-search/zsh-history-substring-search.zsh
-source /home/lmohseni/configs/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $CONFIG_HOME/zsh-history-substring-search/zsh-history-substring-search.zsh
+source $CONFIG_HOME/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # bind UP and DOWN arrow keys
 zmodload zsh/terminfo
