@@ -19,7 +19,7 @@ do
 	#IP=$(for i in `ip r`; do echo $i; done | grep -A 1 src | tail -n1) # can get confused if you use vmware
 	#TEMP="$(($(cat /sys/class/thermal/thermal_zone0/temp) / 1000))C"
 
-	DATE=$(date +%H:%M)
+	DATE=$(date +%l:%M)
 	
 
 	if sysctl hw.acpi.acline | cut -d' ' -f2 > 0 ; 

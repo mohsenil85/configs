@@ -37,7 +37,7 @@ promptinit
 setopt prompt_subst
 compinit -i
 
-PROMPT='%F{magenta}%m%f %F{green}%~%f %F{blue}$(git_prompt_info)%f '
+PROMPT='%F{magenta}%m%f %F{green}%~%f %F{blue}$(git_prompt_info)%f %F{magenta}$%f '
 RPROMPT='%F{red}%B%(?..[%?])%b%f%F{green}%t%f'
 
 
