@@ -1,18 +1,16 @@
-#!/bin/bash
+#!/bin/sh
 
-#link all my shit up
-#totaly forget if this works...
-for i in `ls ~/configs/dotfiles`; do
-	if [ -h ~/.$i ] 
+for i in `ls $HOME/configs/dotfiles`; do
+	if [ -h $HOME/.$i ] 
 	then
 		echo "unlinking " $i
-		unlink ~/.$i
+		unlink $HOME/.$i
 	fi
-	if [ -e ~/.$i ]
+	if [ -e $HOME/.$i ]
 	then
 		echo "backing up old" $i
-		mv ~/.$i ~/.$.bak
+		mv $HOME/.$i $HOME/.$i.bak
 	fi
-		echo "linking "  $i  "to " ~/.$i
-		ln -s ~/configs/dotfiles/$i ~/.$i
+		echo "linking "  $i  "to " $HOME/.$i
+		ln -s $HOME/configs/dotfiles/$i $HOME/.$i
 	done

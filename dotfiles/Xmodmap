@@ -1,0 +1,12 @@
+!Set Capslock to LCtrl
+remove Lock = Caps_Lock
+remove Control = Control_L
+keycode 66 = Control_L
+add Control = Control_L
+
+!Set Escape to Capslock
+keycode 9 = Caps_Lock
+add Lock = Caps_Lock
+
+!Dummy Escape for xcape
+keycode 254 = Escape

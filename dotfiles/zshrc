@@ -97,9 +97,8 @@ zstyle ':completion:*' verbose yes
 
 source ~/.profile
 
-
-source $CONFIG_HOME/vendor/zsh-history-substring-search/zsh-history-substring-search.zsh
-source $CONFIG_HOME/vendor/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $HOME/configs/vendor/zsh-history-substring-search/zsh-history-substring-search.zsh
+source $HOME/configs/vendor/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # bind UP and DOWN arrow keys
 zmodload zsh/terminfo
