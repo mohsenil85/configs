@@ -4,7 +4,9 @@ xset -b & # disable bell
 eval `/usr/bin/ssh-agent` &
 
 
-xsetroot -solid black &
+#xsetroot -solid black &
+
+/usr/local/bin/feh --bg-scale $HOME/nepal.jpg &
 
 xrdb -merge $HOME/.Xresources &
 xmodmap ~/.Xmodmap &
@@ -29,7 +31,7 @@ do
 	else
 		xsetroot -name "plugged in $DATE"
 	fi
-	sleep 2s
+	sleep 2
 done &
 
 exec dwm

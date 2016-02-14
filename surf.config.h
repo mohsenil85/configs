@@ -105,8 +105,8 @@ static Key keys[] = {
 	{ MODKEY,               GDK_KEY_l,      navigate,   { .i = +1 } },
 	{ MODKEY,               GDK_KEY_h,      navigate,   { .i = -1 } },
 
-	{ MODKEY,               GDK_KEY_j,      scroll_v,   { .i = +1 } },
-	{ MODKEY,               GDK_KEY_k,      scroll_v,   { .i = -1 } },
+	{ 0,               GDK_KEY_j,      scroll_v,   { .i = +1 } },
+	{ 0,               GDK_KEY_k,      scroll_v,   { .i = -1 } },
 	{ MODKEY,               GDK_KEY_b,      scroll_v,   { .i = -10000 } },
 	{ MODKEY,               GDK_KEY_space,  scroll_v,   { .i = +10000 } },
 	{ MODKEY,               GDK_KEY_i,      scroll_h,   { .i = +1 } },
@@ -117,12 +117,12 @@ static Key keys[] = {
 	{ MODKEY,               GDK_KEY_o,      source,     { 0 } },
 	{ MODKEY|GDK_SHIFT_MASK,GDK_KEY_o,      inspector,  { 0 } },
 
-	{ MODKEY,               GDK_KEY_g,      spawn,      SETPROP("_SURF_URI", "_SURF_GO") },
+	{ 0,               GDK_KEY_g,      spawn,      SETPROP("_SURF_URI", "_SURF_GO") },
 	{ MODKEY,               GDK_KEY_f,      spawn,      SETPROP("_SURF_FIND", "_SURF_FIND") },
-	{ MODKEY,               GDK_KEY_slash,  spawn,      SETPROP("_SURF_FIND", "_SURF_FIND") },
+	{ 0,               GDK_KEY_slash,  spawn,      SETPROP("_SURF_FIND", "_SURF_FIND") },
 
-	{ MODKEY,               GDK_KEY_n,      find,       { .b = TRUE } },
-	{ MODKEY|GDK_SHIFT_MASK,GDK_KEY_n,      find,       { .b = FALSE } },
+	{ 0,               GDK_KEY_n,      find,       { .b = TRUE } },
+	{ 0 | GDK_SHIFT_MASK,GDK_KEY_n,      find,       { .b = FALSE } },
 
 	{ MODKEY|GDK_SHIFT_MASK,GDK_KEY_c,      toggle,     { .v = "enable-caret-browsing" } },
 	{ MODKEY|GDK_SHIFT_MASK,GDK_KEY_i,      toggle,     { .v = "auto-load-images" } },
@@ -137,8 +137,8 @@ static Key keys[] = {
 	{ MODKEY,               GDK_r,      reload,     { .b = FALSE } },
 	{ MODKEY|GDK_SHIFT_MASK,GDK_p,      print,      { 0 } },
 
-	{ MODKEY,               GDK_p,      clipboard,  { .b = TRUE } },
-	{ MODKEY,               GDK_y,      clipboard,  { .b = FALSE } },
+	{ 0,               GDK_p,      clipboard,  { .b = TRUE } },
+	{ 0,               GDK_y,      clipboard,  { .b = FALSE } },
 
 	{ MODKEY|GDK_SHIFT_MASK,GDK_j,      zoom,       { .i = -1 } },
 	{ MODKEY|GDK_SHIFT_MASK,GDK_k,      zoom,       { .i = +1 } },
