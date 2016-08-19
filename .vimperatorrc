@@ -1,0 +1,21 @@
+"3.14.0 (created: 2016/06/07 23:58:16)
+
+highlight Hint::after content: attr(number); font-size: 20pt;
+
+let mapleader=","
+
+noremap <Leader>r ":source /Users/lmohseni/.vimperatorrc<Return>"
+noremap <Leader>h ":nohlsearch<Return>"
+noremap <Leader>v ":tabopen resource://support-at-lastpass-dot-com/data/vault.html?lplanguage=<Return>"
+noremap <Leader>R ":tabopen chrome://restclient/content/restclient.html<Return>"
+noremap j 8j
+noremap k 8k
+noremap J j
+noremap K k
+"set complete=bSltf
+set hintchars=hjklasdfgyuiopqwertnmzxcvb
+set newtab=all
+source! /Users/lmohseni/.vimperatorrc.local
+
+echo "..."
+" vim: set ft=vimperator:

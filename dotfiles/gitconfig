@@ -20,7 +20,10 @@
   ci = commit
   st = status
   br = branch
+	ctags = !.git/hooks/ctags
 [core]
 	editor = vim
 	autocrlf = input
 	excludesfile = /home/lmohseni/.gitignore_global
+[init]
+	templatedir = ~/.git_template

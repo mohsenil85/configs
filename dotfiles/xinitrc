@@ -6,32 +6,32 @@ eval `/usr/bin/ssh-agent` &
 
 #xsetroot -solid black &
 
-/usr/local/bin/feh --bg-scale $HOME/nepal.jpg &
+# /usr/local/bin/feh --bg-scale $HOME/nepal.jpg &
 
 xrdb -merge $HOME/.Xresources &
-xmodmap ~/.Xmodmap &
+# xmodmap ~/.Xmodmap &
 
-hash firefox && firefox &
-hash yxterm && uxterm &
-hash emacs && emacs --daemon &
+# hash firefox && firefox &
+# hash xterm && uxterm &
+# hash emacs && emacs --daemon &
 
-while true
-do
-	#VOL=$(amixer get Master | tail -1 | sed 's/.*\[\([0-9]*%\)\].*/\1/')
-	#IP=$(for i in `ip r`; do echo $i; done | grep -A 1 src | tail -n1) # can get confused if you use vmware
-	#TEMP="$(($(cat /sys/class/thermal/thermal_zone0/temp) / 1000))C"
+# while true
+# do
+# 	#VOL=$(amixer get Master | tail -1 | sed 's/.*\[\([0-9]*%\)\].*/\1/')
+# 	#IP=$(for i in `ip r`; do echo $i; done | grep -A 1 src | tail -n1) # can get confused if you use vmware
+# 	#TEMP="$(($(cat /sys/class/thermal/thermal_zone0/temp) / 1000))C"
 
-	DATE=$(date +%l:%M)
+# 	DATE=$(date +%l:%M)
 	
 
-	if sysctl hw.acpi.acline | cut -d' ' -f2 > 0 ; 
-	then
-		BAT=$(sysctl hw.acpi.battery.life | cut -d' ' -f2)
-		xsetroot -name "$BAT% $DATE";
-	else
-		xsetroot -name "plugged in $DATE"
-	fi
-	sleep 2
-done &
+# 	if sysctl hw.acpi.acline | cut -d' ' -f2 > 0 ; 
+# 	then
+# 		BAT=$(sysctl hw.acpi.battery.life | cut -d' ' -f2)
+# 		xsetroot -name "$BAT% $DATE";
+# 	else
+# 		xsetroot -name "plugged in $DATE"
+# 	fi
+# 	sleep 2
+# done &
 
-exec dwm
+exec stumpwm

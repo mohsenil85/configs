@@ -1,3 +1,5 @@
+execute pathogen#infect()
+
 " Sets how many lines of history VIM has to remember
 set history=700
 
@@ -145,3 +147,5 @@ set completeopt-=preview
 set paste
 
 set vb
+
+let g:EclimCompletionMethod = 'omnifunc'

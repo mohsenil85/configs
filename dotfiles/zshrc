@@ -27,6 +27,7 @@ alias ll='ls -l'
 alias la='ls -la'
 alias path="echo $PATH | sed 's/:/\n/g'"
 alias v='vim'
+alias vim='nvim'
 
 autoload -U zutil
 autoload -U compinit
@@ -118,3 +119,5 @@ bindkey -M emacs '^N' history-substring-search-down
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
